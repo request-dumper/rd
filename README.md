@@ -36,3 +36,7 @@ Cleanup:
 kubectl delete pod request-dumper
 kubectl delete svc request-dumper
 ```
+
+## License
+
+request-dumper is free and unencumbered public domain software. For more information, see <https://unlicense.org/> or the accompanying [LICENSE](/LICENSE) file.
