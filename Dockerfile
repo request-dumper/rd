@@ -10,7 +10,7 @@ RUN go test -v
 
 RUN CGO_ENABLED=0 go build -o /go/bin/app
 
-FROM gcr.io/distroless/static
+FROM gcr.io/distroless/static-debian11@sha256:d6fa9db9548b5772860fecddb11d84f9ebd7e0321c0cb3c02870402680cc315f
 
 COPY --from=build-env /go/bin/app /
 CMD ["/app"]
