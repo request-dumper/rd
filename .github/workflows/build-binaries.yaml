@@ -39,4 +39,3 @@ jobs:
         run: go mod download
       - name: Build source code
         run: go build -v -o ${{ env.BINARY_PREFIX }}-${{ runner.os }}-${{ matrix.go-version }}
-
