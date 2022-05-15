@@ -1,0 +1,85 @@
+# Make sure to check the documentation at https://goreleaser.com
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.CommitDate}} -X main.builtBy=goreleaser
+    mod_timestamp: '{{ .CommitTimestamp }}'
+archives:
+  - replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+release:
+  draft: true
+dockers:
+  - goos: linux
+    # GOARCH of the built binaries/packages that should be used.
+    goarch: amd64
+    # GOARM of the built binaries/packages that should be used.
+    goarm: ''
+    image_templates:
+      - "ghcr.io/florianrusch/{{.ProjectName}}:latest"
+      - "ghcr.io/florianrusch/{{.ProjectName}}:{{ .Tag }}"
+
+    # Skips the docker push.
+    # If set to auto, the release will not be pushed to the Docker repository
+    # in case there is an indicator of a prerelease in the tag, e.g. v1.0.0-rc1.
+    skip_push: false
+
+    # Set the "backend" for the Docker pipe.
+    # Valid options are: docker, buildx, podman.
+    use: docker
+
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+
+  - goos: linux
+    # GOARCH of the built binaries/packages that should be used.
+    goarch: arm64
+    image_templates:
+      - "ghcr.io/florianrusch/{{.ProjectName}}:latest-arm64"
+      - "ghcr.io/florianrusch/{{.ProjectName}}:{{ .Tag }}-arm64"
+
+    # Skips the docker push.
+    # If set to auto, the release will not be pushed to the Docker repository
+    # in case there is an indicator of a prerelease in the tag, e.g. v1.0.0-rc1.
+    skip_push: true
+
+    # Set the "backend" for the Docker pipe.
+    # Valid options are: docker, buildx, podman.
+    use: docker
+
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--platform=linux/arm64/v8"
