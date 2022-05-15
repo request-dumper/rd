@@ -1,0 +1,42 @@
+name: build:binaries
+
+on: [push, pull_request]
+
+env:
+  BINARY_PREFIX: ${{ github.repository }}
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        go-version: [1.17.x, 1.18.x]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Setup golang environment
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Check out code
+        uses: actions/checkout@v3
+      - name: Restore go modules cache
+        uses: actions/cache@v2
+        with:
+          # In order:
+          # * Module download cache
+          # * Build cache (Linux)
+          # * Build cache (Mac)
+          # * Build cache (Windows)
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+            ~/Library/Caches/go-build
+            ~\AppData\Local\go-build
+          key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-${{ matrix.go-version }}-
+      - name: Download dependencies
+        run: go mod download
+      - name: Build source code
+        run: go build -v -o ${{ env.BINARY_PREFIX }}-${{ runner.os }}-${{ matrix.go-version }}
+
