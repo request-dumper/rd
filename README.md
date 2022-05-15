@@ -37,6 +37,16 @@ kubectl delete pod request-dumper
 kubectl delete svc request-dumper
 ```
 
+## ToDo's
+
+- [ ] Optimize/improve CI pipeline
+	- <https://github.dev/cli/cli>
+	- <https://github.dev/traefik/traefik>
+	- <https://github.com/goreleaser/goreleaser-action>
+- [ ] Make output format customizable (plain text, json)
+- [ ] Implement one-request mode (app exits automatically after the request was received)
+- [ ] Create a homebrew formular
+
 ## License
 
 request-dumper is free and unencumbered public domain software. For more information, see <https://unlicense.org/> or the accompanying [LICENSE](/LICENSE) file.
