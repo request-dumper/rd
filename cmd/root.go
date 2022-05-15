@@ -3,9 +3,9 @@ package cmd
 import (
 	"os"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	log "github.com/sirupsen/logrus"
 
 	"github.com/florianrusch/request-dumper/internal"
 )
@@ -18,7 +18,7 @@ var (
 var rootCmd = &cobra.Command{
 	Use:   "request-dumper",
 	Short: "The request-dumper is a very fast webserver that dumps all incoming requests into his log",
-	Long: ``,
+	Long:  ``,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {

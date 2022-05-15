@@ -2,22 +2,22 @@ package internal
 
 import (
 	"fmt"
-	"strings"
 	"net/url"
+	"strings"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/gofiber/fiber/v2"
+	log "github.com/sirupsen/logrus"
 )
 
 func StartServer(port int) {
 	appName := "Request-Dumper"
 
 	app := fiber.New(fiber.Config{
-		AppName: appName,
-		Prefork: false,
-		DisableKeepalive: true,
+		AppName:               appName,
+		Prefork:               false,
+		DisableKeepalive:      true,
 		DisableStartupMessage: true,
-		Network: fiber.NetworkTCP,
+		Network:               fiber.NetworkTCP,
 	})
 
 	app.Use(logRequests)
@@ -28,7 +28,7 @@ func StartServer(port int) {
 func logRequests(c *fiber.Ctx) error {
 	url, err := url.Parse(string(c.Request().RequestURI()[:]))
 
-	if (err != nil) {
+	if err != nil {
 		log.Fatal(err)
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}
@@ -36,16 +36,16 @@ func logRequests(c *fiber.Ctx) error {
 	header := parseHeader(c)
 
 	fields := log.Fields{
-		"method": c.Method(),
-		"baseUrl": c.BaseURL(),
-		"path": url.Path,
+		"method":          c.Method(),
+		"baseUrl":         c.BaseURL(),
+		"path":            url.Path,
 		"queryParameters": url.Query(),
-		"header": header,
-		"authorization": c.Get("Authorization"),
-		"clientIp": c.IP(),
+		"header":          header,
+		"authorization":   c.Get("Authorization"),
+		"clientIp":        c.IP(),
 	}
 
-	if (c.Body() != nil) {
+	if c.Body() != nil {
 		fields["body"] = string(c.Body()[:])
 	}
 
@@ -56,7 +56,7 @@ func logRequests(c *fiber.Ctx) error {
 
 // Parse the header into a map. This function also handels multiple headers with the same name
 // and also multiple values which are separated via a colon.
-func parseHeader(c *fiber.Ctx) (map[string][]string) {
+func parseHeader(c *fiber.Ctx) map[string][]string {
 	header := make(map[string][]string)
 
 	c.Context().Request.Header.VisitAll(func(key []byte, value []byte) {
@@ -72,4 +72,3 @@ func parseHeader(c *fiber.Ctx) (map[string][]string) {
 
 	return header
 }
-

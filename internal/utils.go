@@ -1,6 +1,6 @@
 package internal
 
-func ArrayContains(haystack []string, neadle string) (bool) {
+func ArrayContains(haystack []string, neadle string) bool {
 	for _, v := range haystack {
 		if v == neadle {
 			return true
@@ -8,4 +8,3 @@ func ArrayContains(haystack []string, neadle string) (bool) {
 	}
 	return false
 }
-
