@@ -1,6 +1,6 @@
 package main
 
-import "github.com/florianrusch/request-dumper/cmd"
+import "github.com/request-dumper/rd/cmd"
 
 func main() {
 	cmd.Execute()

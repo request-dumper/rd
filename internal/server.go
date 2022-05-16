@@ -21,6 +21,7 @@ func StartServer(port int) {
 	})
 
 	app.Use(logRequests)
+
 	log.Info(fmt.Sprintf("%s started at port %d", appName, port))
 	log.Fatal(app.Listen(fmt.Sprintf(":%d", port)))
 }
@@ -41,7 +42,6 @@ func logRequests(c *fiber.Ctx) error {
 		"path":            url.Path,
 		"queryParameters": url.Query(),
 		"header":          header,
-		"authorization":   c.Get("Authorization"),
 		"clientIp":        c.IP(),
 	}
 

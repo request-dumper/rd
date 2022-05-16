@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
-	"github.com/florianrusch/request-dumper/internal"
+	"github.com/request-dumper/rd/internal"
 )
 
 var (

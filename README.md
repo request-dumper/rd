@@ -1,4 +1,6 @@
-# Request-Dumper
+# Request-Dumper (`rd`)
+
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/florianrusch/request-dumper) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/florianrusch/request-dumper) [![Go Report Card](https://goreportcard.com/badge/github.com/florianrusch/request-dumper)](https://goreportcard.com/report/github.com/florianrusch/request-dumper)
 
 Do you need to take a look how a request looks like? Then you need any kind of server application which receives the request and presents it to you.
 There for I created the "Request-Dumper".
@@ -7,10 +9,10 @@ There for I created the "Request-Dumper".
 
 ```shell
 $ rd --help
-The request-dumper is a very fast webserver that dumps all incoming requests into his log
+The "request-dumper" is a very fast webserver that dumps all incoming requests into his log
 
 Usage:
-  request-dumper [flags]
+  rd [flags]
 
 Flags:
   -h, --help       help for request-dumper
@@ -20,13 +22,13 @@ Flags:
 ## Run it in a container
 
 ```shell
-docker run rd gcri.io/florianrusch/request-dumper/rd:1.0.0
+docker run request-dumper ghcr.io/request-dumper/rd:1.0.0
 ```
 
 ## Run it in kubernetes
 
 ```shell
-kubectl run request-dumper gcri.io/florianrusch/request-dumper/rd:1.0.0
+kubectl run request-dumper ghcr.io/request-dumper/rd:1.0.0
 kubectl pod request-dumper --port=3000 --name request-dumper
 ```
 
@@ -36,6 +38,16 @@ Cleanup:
 kubectl delete pod request-dumper
 kubectl delete svc request-dumper
 ```
+
+## ToDo's
+
+- [ ] Optimize/improve CI pipeline
+	- <https://github.dev/cli/cli>
+	- <https://github.dev/traefik/traefik>
+	- <https://github.com/goreleaser/goreleaser-action>
+- [ ] Make output format customizable (plain text, json)
+- [ ] Implement one-request mode (app exits automatically after the request was received)
+- [ ] Create a homebrew formular
 
 ## License
 
