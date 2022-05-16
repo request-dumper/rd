@@ -43,8 +43,8 @@ dockers:
     # GOARM of the built binaries/packages that should be used.
     goarm: ''
     image_templates:
-      - "ghcr.io/florianrusch/{{.ProjectName}}:latest"
-      - "ghcr.io/florianrusch/{{.ProjectName}}:{{ .Tag }}"
+      - "ghcr.io/request-dumper/{{.ProjectName}}:latest"
+      - "ghcr.io/request-dumper/{{.ProjectName}}:{{ .Tag }}"
 
     # Skips the docker push.
     # If set to auto, the release will not be pushed to the Docker repository
@@ -66,8 +66,8 @@ dockers:
     # GOARCH of the built binaries/packages that should be used.
     goarch: arm64
     image_templates:
-      - "ghcr.io/florianrusch/{{.ProjectName}}:latest-arm64"
-      - "ghcr.io/florianrusch/{{.ProjectName}}:{{ .Tag }}-arm64"
+      - "ghcr.io/request-dumper/{{.ProjectName}}:latest-arm64"
+      - "ghcr.io/request-dumper/{{.ProjectName}}:{{ .Tag }}-arm64"
 
     # Skips the docker push.
     # If set to auto, the release will not be pushed to the Docker repository

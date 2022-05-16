@@ -1,4 +1,4 @@
-module github.com/florianrusch/request-dumper
+module github.com/request-dumper/rd
 
 go 1.18
 

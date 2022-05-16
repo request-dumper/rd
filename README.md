@@ -1,4 +1,4 @@
-# Request-Dumper
+# Request-Dumper (`rd`)
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/florianrusch/request-dumper) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/florianrusch/request-dumper) [![Go Report Card](https://goreportcard.com/badge/github.com/florianrusch/request-dumper)](https://goreportcard.com/report/github.com/florianrusch/request-dumper)
 
@@ -9,10 +9,10 @@ There for I created the "Request-Dumper".
 
 ```shell
 $ rd --help
-The request-dumper is a very fast webserver that dumps all incoming requests into his log
+The "request-dumper" is a very fast webserver that dumps all incoming requests into his log
 
 Usage:
-  request-dumper [flags]
+  rd [flags]
 
 Flags:
   -h, --help       help for request-dumper
@@ -22,13 +22,13 @@ Flags:
 ## Run it in a container
 
 ```shell
-docker run rd gcri.io/florianrusch/request-dumper/rd:1.0.0
+docker run request-dumper ghcr.io/request-dumper/rd:1.0.0
 ```
 
 ## Run it in kubernetes
 
 ```shell
-kubectl run request-dumper gcri.io/florianrusch/request-dumper/rd:1.0.0
+kubectl run request-dumper ghcr.io/request-dumper/rd:1.0.0
 kubectl pod request-dumper --port=3000 --name request-dumper
 ```
 
