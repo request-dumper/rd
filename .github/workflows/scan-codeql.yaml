@@ -1,7 +1,7 @@
 name: scan:codeql
 
 on:
-  pull_request:
+  push:
     paths-ignore:
       - '**/*.md'
   schedule:
