@@ -1,4 +1,4 @@
 FROM scratch
-ENTRYPOINT ["/request-dumper"]
-COPY request-dumper /request-dumper
+ENTRYPOINT ["/rd"]
+COPY rd /rd
 
