@@ -21,6 +21,8 @@ func StartServer(port int) {
 	})
 
 	app.Use(logRequests)
+
+	log.Info(fmt.Sprintf("%s started at port %d", appName, port))
 	log.Fatal(app.Listen(fmt.Sprintf(":%d", port)))
 }
 
