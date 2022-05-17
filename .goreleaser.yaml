@@ -60,26 +60,26 @@ dockers:
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
 
-  - goos: linux
-    # GOARCH of the built binaries/packages that should be used.
-    goarch: arm64
-    image_templates:
-      - "ghcr.io/request-dumper/{{.ProjectName}}:latest-arm64"
-      - "ghcr.io/request-dumper/{{.ProjectName}}:{{ .Tag }}-arm64"
-
-    # Skips the docker push.
-    # If set to auto, the release will not be pushed to the Docker repository
-    # in case there is an indicator of a prerelease in the tag, e.g. v1.0.0-rc1.
-    skip_push: true
-
-    # Set the "backend" for the Docker pipe.
-    # Valid options are: docker, buildx, podman.
-    use: docker
-
-    build_flag_templates:
-      - "--pull"
-      - "--label=org.opencontainers.image.created={{.Date}}"
-      - "--label=org.opencontainers.image.title={{.ProjectName}}"
-      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version={{.Version}}"
-      - "--platform=linux/arm64/v8"
+#   - goos: linux
+#     # GOARCH of the built binaries/packages that should be used.
+#     goarch: arm64
+#     image_templates:
+#       - "ghcr.io/request-dumper/{{.ProjectName}}:latest-arm64"
+#       - "ghcr.io/request-dumper/{{.ProjectName}}:{{ .Tag }}-arm64"
+#
+#     # Skips the docker push.
+#     # If set to auto, the release will not be pushed to the Docker repository
+#     # in case there is an indicator of a prerelease in the tag, e.g. v1.0.0-rc1.
+#     skip_push: true
+#
+#     # Set the "backend" for the Docker pipe.
+#     # Valid options are: docker, buildx, podman.
+#     use: docker
+#
+#     build_flag_templates:
+#       - "--pull"
+#       - "--label=org.opencontainers.image.created={{.Date}}"
+#       - "--label=org.opencontainers.image.title={{.ProjectName}}"
+#       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+#       - "--label=org.opencontainers.image.version={{.Version}}"
+#       - "--platform=linux/arm64/v8"
