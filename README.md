@@ -22,7 +22,7 @@ Flags:
 ## Run it in a container
 
 ```shell
-docker run request-dumper ghcr.io/request-dumper/rd:1.0.0
+docker run --name request-dumper ghcr.io/request-dumper/rd:1.0.0
 ```
 
 ## Run it in kubernetes
@@ -41,10 +41,6 @@ kubectl delete svc request-dumper
 
 ## ToDo's
 
-- [ ] Optimize/improve CI pipeline
-	- <https://github.dev/cli/cli>
-	- <https://github.dev/traefik/traefik>
-	- <https://github.com/goreleaser/goreleaser-action>
 - [ ] Make output format customizable (plain text, json)
 - [ ] Implement one-request mode (app exits automatically after the request was received)
 - [ ] Create a homebrew formular
