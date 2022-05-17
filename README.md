@@ -22,7 +22,7 @@ Flags:
 ## Run it in a container
 
 ```shell
-docker run --name request-dumper --port 3000:3000 ghcr.io/request-dumper/rd:1.0.0
+docker run --name request-dumper -p 3000:3000 ghcr.io/request-dumper/rd:1.0.0
 ```
 
 ## Run it in kubernetes
