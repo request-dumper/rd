@@ -1,6 +1,6 @@
 # Request-Dumper (`rd`)
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/florianrusch/request-dumper) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/florianrusch/request-dumper) [![Go Report Card](https://goreportcard.com/badge/github.com/florianrusch/request-dumper)](https://goreportcard.com/report/github.com/florianrusch/request-dumper)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/request-dumper/rd) ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/request-dumper/rd) [![Go Report Card](https://goreportcard.com/badge/github.com/request-dumper/rd)](https://goreportcard.com/report/github.com/request-dumper/rd)
 
 Do you need to take a look how a request looks like? Then you need any kind of server application which receives the request and presents it to you.
 There for I created the "Request-Dumper".
