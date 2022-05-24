@@ -4,7 +4,8 @@ on:
   push:
     tags:
       - '*'
-    branch:
+  pull_request:
+    branches:
       - chore/add-harden-runner-ci-job
 
 permissions:
