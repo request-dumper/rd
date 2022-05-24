@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - '*'
+    branch:
+      - chore/add-harden-runner-ci-job
 
 permissions:
   contents: write
@@ -36,10 +38,9 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
-          # either 'goreleaser' (default) or 'goreleaser-pro'
           distribution: goreleaser
           version: latest
-          args: release --rm-dist
+          args: release --rm-dist --snapshot --skip-publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
