@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - '*'
-    branches:
-      - chore/add-harden-runner-ci-job
 
 permissions:
   contents: write
@@ -48,7 +46,7 @@ jobs:
         with:
           distribution: goreleaser
           version: latest
-          args: release --rm-dist --snapshot --skip-publish
+          args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
