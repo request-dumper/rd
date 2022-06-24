@@ -29,7 +29,7 @@ docker run --name request-dumper -p 3000:3000 ghcr.io/request-dumper/rd:1.0.0
 
 ```shell
 kubectl run request-dumper ghcr.io/request-dumper/rd:1.0.0
-kubectl pod request-dumper --port=3000 --name request-dumpe
+kubectl pod request-dumper --port=3000 --name request-dumper
 ```
 
 Cleanup:
