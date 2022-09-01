@@ -28,7 +28,7 @@ docker run --name request-dumper -p 3000:3000 ghcr.io/request-dumper/rd:1.0.0
 ## Run it in kubernetes
 
 ```shell
-kubectl run request-dumper --expose=true --image ghcr.io/request-dumper/rd:latest
+kubectl run request-dumper --expose=true --port=3000 --image ghcr.io/request-dumper/rd:latest
 kubectl logs -f request-dumper
 ```
 
