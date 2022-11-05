@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go test " type="GoTestRunConfiguration" factoryName="Go Test">
+    <module name="rd" />
+    <working_directory value="$PROJECT_DIR$" />
+    <kind value="DIRECTORY" />
+    <package value="github.com/request-dumper/rd" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="./..." />
+    <framework value="gotest" />
+    <pattern value="./..." />
+    <method v="2" />
+  </configuration>
+</component>
