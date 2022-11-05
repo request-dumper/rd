@@ -1,13 +1,14 @@
 package cmd
 
 import (
+	"github.com/request-dumper/rd/internal/logging"
 	"os"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
 	"github.com/request-dumper/rd/internal"
+	"github.com/rs/zerolog"
 )
 
 var (
@@ -22,8 +23,7 @@ var rootCmd = &cobra.Command{
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		log.SetFormatter(&log.JSONFormatter{})
-		log.SetOutput(os.Stdout)
+		logging.InitZerolog(zerolog.InfoLevel)
 		internal.StartServer(cfgPort)
 	},
 }
