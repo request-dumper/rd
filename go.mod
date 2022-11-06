@@ -1,6 +1,6 @@
 module github.com/request-dumper/rd
 
-go 1.18
+go 1.19
 
 require (
 	github.com/gofiber/fiber/v2 v2.39.0
