@@ -1,16 +1,16 @@
 package internal
 
 import (
-	"fmt"
-	"net/url"
-	"strings"
+	"github.com/request-dumper/rd/internal/logging"
 
+	"fmt"
 	"github.com/gofiber/fiber/v2"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
+const appName = "Request-Dumper"
+
 func StartServer(port int) {
-	appName := "Request-Dumper"
 
 	app := fiber.New(fiber.Config{
 		AppName:               appName,
@@ -20,55 +20,17 @@ func StartServer(port int) {
 		Network:               fiber.NetworkTCP,
 	})
 
-	app.Use(logRequests)
+	app.Use(logging.ZerologFiberMiddleware())
+	app.Use(ok)
 
-	log.Info(fmt.Sprintf("%s started at port %d", appName, port))
-	log.Fatal(app.Listen(fmt.Sprintf(":%d", port)))
+	log.Info().
+		Int("port", port).
+		Msgf(fmt.Sprintf("%s started", appName))
+	log.Fatal().
+		Err(app.Listen(fmt.Sprintf(":%d", port))).
+		Msg("Application was stopped")
 }
 
-func logRequests(c *fiber.Ctx) error {
-	url, err := url.Parse(string(c.Request().RequestURI()[:]))
-
-	if err != nil {
-		log.Fatal(err)
-		return c.SendStatus(fiber.StatusInternalServerError)
-	}
-
-	header := parseHeader(c)
-
-	fields := log.Fields{
-		"method":          c.Method(),
-		"baseUrl":         c.BaseURL(),
-		"path":            url.Path,
-		"queryParameters": url.Query(),
-		"header":          header,
-		"clientIp":        c.IP(),
-	}
-
-	if c.Body() != nil {
-		fields["body"] = string(c.Body()[:])
-	}
-
-	log.WithFields(fields).Info(fmt.Sprintf("%s %s%s", c.Method(), c.BaseURL(), c.OriginalURL()))
-
+func ok(c *fiber.Ctx) error {
 	return c.SendStatus(fiber.StatusOK)
-}
-
-// Parse the header into a map. This function also handels multiple headers with the same name
-// and also multiple values which are separated via a colon.
-func parseHeader(c *fiber.Ctx) map[string][]string {
-	header := make(map[string][]string)
-
-	c.Context().Request.Header.VisitAll(func(key []byte, value []byte) {
-		headerName := string(key[:])
-		headerValue := string(value[:])
-
-		for _, v := range strings.Split(headerValue, ", ") {
-			for _, v2 := range strings.Split(v, ",") {
-				header[headerName] = append(header[headerName], v2)
-			}
-		}
-	})
-
-	return header
 }
