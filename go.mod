@@ -3,7 +3,7 @@ module github.com/request-dumper/rd
 go 1.19
 
 require (
-	github.com/gofiber/fiber/v2 v2.39.0
+	github.com/gofiber/fiber/v2 v2.40.1
 	github.com/rs/zerolog v1.28.0
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/viper v1.14.0
