@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@c8454efe5d0bdefd25384362fe217428ca277d57 # 2.2.0
+        uses: step-security/harden-runner@6b3083af2869dc3314a0257a42f4af696cc79ba3 # 2.3.1
         with:
           egress-policy: block
           disable-telemetry: true
@@ -27,6 +27,7 @@ jobs:
             proxy.golang.org:443
             storage.googleapis.com:443
             sum.golang.org:443
+            objects.githubusercontent.com:443
       - name: Check out code
         uses: actions/checkout@v3
       - name: Initialize CodeQL
