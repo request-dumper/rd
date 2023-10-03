@@ -26,7 +26,7 @@ jobs:
             proxy.golang.org:443
             storage.googleapis.com:443
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Fetch git tags
