@@ -27,7 +27,7 @@ jobs:
             proxy.golang.org:443
             storage.googleapis.com:443
       - name: Setup golang environment
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go-version }}
           cache: false
